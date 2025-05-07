@@ -38,123 +38,331 @@ HAVING condition;
 
 **Question 1**
 --
--- Paste Question 1 here
+-- How many prescriptions were written for each medication?
+
+Sample tablePrescriptions Table
+
+
+
+For example:
+
+Result
+Medication     TotalPrescriptions
+-------------  ------------------
+Ciprofloxacin  1
+Doxorubicin    1
+Ibuprofen      1
+Levothyroxine  1
+Lisinopril     1
+MMR            1
+Pending        1
+Prenatal vita  1
+Sertraline     1
+Topiramate     1
 
 ```sql
--- Paste your SQL code below for Question 1
+-- SELECT Medication,COUNT(*) AS TotalPrescriptions
+FROM Prescriptions
+GROUP BY Medication;
 ```
 
 **Output:**
 
-![Output1](output.png)
+![image](https://github.com/user-attachments/assets/1e99dc23-d1e9-4e3e-9f77-f3903c8e03f7)
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+--How many appointments are scheduled for each patient?
+
+Sample table: Appointments Table
+
+name                  type
+--------------------  ----------
+AppointmentID         INTEGER
+PatientID             INTEGER
+DoctorID              INTEGER
+AppointmentDateTime   DATETIME
+Purpose               TEXT
+Status                TEXT
+For example:
+
+Result
+PatientID   TotalAppointments
+----------  -----------------
+3           3
+5           2
+6           1
+7           1
+10          3
 
 ```sql
--- Paste your SQL code below for Question 2
+-- SELECT PatientID, COUNT(AppointmentID) AS TotalAppointments
+FROM Appointments
+GROUP BY PatientID
+ORDER BY PatientID;
 ```
 
 **Output:**
 
-![Output2](output.png)
+![image](https://github.com/user-attachments/assets/51f84df6-2f3a-4e47-af9d-4d6a410c7307)
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+-- What is the total number of appointments scheduled for each day?
 
+Table: Appointments
+
+name                 type
+-------------------  ----------
+AppointmentID        INTEGER
+PatientID            INTEGER
+DoctorID             INTEGER
+AppointmentDateTime  DATETIME
+Purpose              TEXT
+Status               TEXT
+ 
+
+For example:
+
+Result
+AppointmentDate  TotalAppointments
+---------------  -----------------
+2024-02-16       4
+2024-02-18       1
+2024-02-20       1
+2024-02-21       1
+2024-02-22       1
+2024-02-23       2
 ```sql
--- Paste your SQL code below for Question 3
+-- SELECT DATE(AppointmentDateTime) AS AppointmentDate, COUNT(*) AS TotalAppointments
+FROM Appointments
+GROUP BY DATE(AppointmentDateTime)
+ORDER BY DATE(AppointmentDateTime);
 ```
 
 **Output:**
 
-![Output3](output.png)
+![image](https://github.com/user-attachments/assets/b097a3f0-88a7-436f-94f0-e226787a81ce)
 
 **Question 4**
 ---
--- Paste Question 4 here
+-- Write a SQL query to find how many employees have an income greater than 50K?
+
+Table: employee
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+age         INTEGER
+city        TEXT
+income      INTEGER
+For example:
+
+Result
+employees_count
+---------------
+8
+
 
 ```sql
--- Paste your SQL code below for Question 4
+-- SELECT COUNT(*) AS employees_count
+FROM employee
+WHERE income>50000;
 ```
 
 **Output:**
 
-![Output4](output.png)
+![image](https://github.com/user-attachments/assets/0a1c7db7-8708-41c7-bd70-57affb6b69da)
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+--Write a SQL query to calculate total purchase amount of all orders. Return total purchase amount.
+
+Sample table: orders
+
+ord_no      purch_amt   ord_date    customer_id  salesman_id
+
+----------  ----------  ----------  -----------  -----------
+
+70001       150.5       2012-10-05  3005         5002
+
+70009       270.65      2012-09-10  3001         5005
+
+70002       65.26       2012-10-05  3002         5001
+
+For example:
+
+Result
+TOTAL
+----------
+17541.18
+
 
 ```sql
--- Paste your SQL code below for Question 5
+-- SELECT SUM(purch_amt) AS TOTAL
+FROM orders;
 ```
 
 **Output:**
 
-![Output5](output.png)
+![image](https://github.com/user-attachments/assets/9349a8f0-772d-471c-a826-3afe2f6bdec8)
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+-- Write a SQL query to determine the number of customers who received at least one grade for their activity.
+
+Sample table: customer
+
+customer_id |   cust_name    |    city    | grade | salesman_id 
+
+-------------+----------------+------------+-------+-------------
+
+        3002 | Nick Rimando   | New York   |   100 |        5001
+
+        3007 | Brad Davis     | New York   |   200 |        5001
+
+        3005 | Graham Zusi    | California |   200 |        5002
+
+ 
+
+For example:
+
+Result
+COUNT
+----------
+8
 
 ```sql
--- Paste your SQL code below for Question 6
+-- SELECT COUNT(*) AS COUNT
+FROM customer
+WHERE grade IS NOT NULL;
 ```
 
 **Output:**
 
-![Output6](output.png)
+![image](https://github.com/user-attachments/assets/e61081d5-0023-4e24-ac10-09029bae5e98)
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+--Write a SQL query to find Who has the highest income among employee living in California?
+
+Table: employee
+
+name        type
+----------  ----------
+id          INTEGER
+name        TEXT
+age         INTEGER
+city        TEXT
+income      INTEGER
+For example:
+
+Result
+name        max(income)
+----------  -----------
+Adam        5000000
+
 
 ```sql
--- Paste your SQL code below for Question 7
+-- SELECT name, max(income)
+FROM employee
+WHERE city = 'California';
 ```
 
 **Output:**
 
-![Output7](output.png)
+![image](https://github.com/user-attachments/assets/2502cd0c-a9d5-49a0-b99f-825a1b9245d3)
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+--Write the SQL query that accomplishes the selection of number of products for each category from products table which includes only those products where the category ID is greater than 2.
+
+Sample table: products
+
+
+
+For example:
+
+Result
+category_id  COUNT
+-----------  ----------
+3            3
+
 
 ```sql
--- Paste your SQL code below for Question 8
+-- SELECT category_id, COUNT(*) AS COUNT
+FROM products
+WHERE category_id>2
+GROUP BY category_id;
 ```
 
 **Output:**
 
-![Output8](output.png)
+![image](https://github.com/user-attachments/assets/c2575633-35d0-43fe-ac96-9429d4e75e48)
 
 **Question 9**
 ---
--- Paste Question 9 here
+-- Write the SQL query that accomplishes the grouping of data by age intervals using the expression (age/5)5, calculates the minimum age for each group, and excludes groups where the minimum age is not less than 25.
+
+Sample table: customer1
+
+
+
+For example:
+
+Result
+age_group   MIN(age)
+----------  ----------
+20          22
+
 
 ```sql
--- Paste your SQL code below for Question 9
+-- SELECT(age / 5) * 5 AS age_group , MIN(age)
+FROM customer1
+GROUP BY age_group
+HAVING MIN(age) < 25;
 ```
 
 **Output:**
 
-![Output9](output.png)
+![image](https://github.com/user-attachments/assets/26006464-b845-4f52-8c9b-c8abe66ba5c2)
 
 **Question 10**
 ---
--- Paste Question 10 here
+--Write the SQL query that achieves the grouping of data by occupation, calculates the minimum work hours for each occupation, and excludes occupations where the minimum work hour is not greater than 8.
+
+Sample table: employee1
+
+
+
+For example:
+
+Result
+occupation  MIN(workhour)
+----------  -------------
+Business    10
+Doctor      15
+Engineer    12
+Teacher     9
+
 
 ```sql
--- Paste your SQL code below for Question 10
+-- SELECT occupation, MIN(workhour)
+FROM employee1
+GROUP BY occupation
+HAVING MIN(workhour) > 8;
 ```
 
 **Output:**
 
-![Output10](output.png)
+![image](https://github.com/user-attachments/assets/a7cfafc0-6aaa-4ee8-b436-0681e467d6ca)
 
 
 ## RESULT
