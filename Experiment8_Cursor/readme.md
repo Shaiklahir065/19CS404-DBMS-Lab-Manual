@@ -1,5 +1,6 @@
 # Experiment 8: PL/SQL Cursor Programs
-
+## Name: Shaik Lahir
+## Reg.no:212224240148
 ## AIM
 To write and execute PL/SQL programs using cursors and exception handling to manage runtime errors effectively and display appropriate messages.
 
